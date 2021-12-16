@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Makeup</title>
+    <link href="../static/index.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Roboto&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="top">
+      <img src="../static/background-img.jpg">
+      <div id="topbar">
+        <div id="header">
+          <h1>Search Makeup</h1>
+          <p>Find and compare makeup products</p>
+        </div>
+        <div id="input">
+          <form action="" method="get">
+            <lable for="menu">Product Type: </lable>
+            <select name="menu">
+              <option value="select">Select</option>
+              {% for product_type in menu_dictionary['product_type'] %}
+              <option value="{{product_type}}">{{product_type}}</option>
+              {% endfor %}
+            </select>
+            <label for="menu">Brand: </label>
+            <select name="menu">
+              <option value="select">Select</option>
+              {% for brand in menu_dictionary['brand'] %}
+              <option value="{{brand}}">{{brand}}</option>
+              {% endfor %}
+            </select>
+            <input type='submit' value='Submit'/>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!--<div id="input">
+      <form action="" method="get">
+        <lable for="menu">Product Type: </lable>
+        <select name="menu">
+          <option value="select">Select</option>
+          {% for product_type in menu_dictionary['product_type'] %}
+          <option value="{{product_type}}">{{product_type}}</option>
+          {% endfor %}
+        </select>
+        <label for="menu">Brand: </label>
+        <select name="menu">
+          <option value="select">Select</option>
+          {% for brand in menu_dictionary['brand'] %}
+          <option value="{{brand}}">{{brand}}</option>
+          {% endfor %}
+        </select>
+        <label for="menu">Tag: </label>
+        <select name="menu">
+          <option value="select">Select</option>
+          {% for tag in menu_dictionary['tag_list'] %}
+          <option value="{{tag}}">{{tag}}</option>
+          {% endfor %}
+        </select>
+        <input type='submit' value='Submit'/>
+        {% if menu %}
+        <p>{{menu[0]}}</p>
+        <p>{{menu[1]}}</p>
+        <p>{{menu[2]}}</p>
+        {% endif %}
+      </form>
+    </div>-->
+      <!--<section>
+        <label>Product Type: </label>
+        <select>
+          <option>Blush</option>
+          <option>Bronzer</option>
+          <option>Eyebrow</option>
+          <option>Eyeliner</option>
+          <option>Eyeshadow</option>
+          <option>Foundation</option>
+          <option>Lip Liner</option>
+          <option>LipStick</option>
+          <option>Mascara</option>
+          <option>Nail polish</option>
+        </select>
+      </section>
+      <section>
+        <label>Tags: </label>
+        <select>
+          <option>Canadian</option>
+          <option>CertClean</option>
+          <option>Chemical Free</option>
+          <option>Dairy Free</option>
+          <option>EWG Verified</option>
+          <option>EcoCert</option>
+          <option>Fair Trade</option>
+          <option>Gluten Free</option>
+          <option>Hypoallergenic</option>
+          <option>Natural</option>
+          <option>No Talc</option>
+          <option>Non-GMO</option>
+          <option>Organic</option>
+          <option>Peanut Free Product</option>
+          <option>Sugar Free</option>
+          <option>USDA Organic</option>
+          <option>Vegan</option>
+          <option>alcohol free</option>
+          <option>cruelty free</option>
+          <option>oil free</option>
+          <option>purpicks</option>
+          <option>silicone free</option>
+          <option>water free</option>
+        </select>
+      </section>
+      <section>
+        <label>Brand: </label>
+        <select>
+          <option>almay</option>
+          <option>alva</option>
+          <option>anna sui</option>
+          <option>annabelle</option>
+          <option>benefit</option>
+          <option>boosh</option>
+          <option>burt's bees</option>
+          <option>butter london</option>
+          <option>c'est moi</option>
+          <option>cargo cosmetics</option>
+          <option>china glaze</option>
+          <option>clinique</option>
+          <option>coastal classic creation</option>
+          <option>colourpop</option>
+          <option>covergirl</option>
+          <option>dalish</option>
+          <option>tenth</option>
+          <option>dior</option>
+          <option>dr. haschka</option>
+          <option>elf</option>
+          <option>essie</option>
+          <option>fenty</option>
+          <option>glossier</option>
+          <option>green people</option>
+          <option>iman</option>
+          <option>l'oreal</option>
+          <option>bath cosmetics usa</option>
+          <option>maia's mineral galaxy</option>
+          <option>marcelle</option>
+          <option>marienatie</option>
+          <option>maybelline</option>
+          <option>milani</option>
+          <option>mineral fusion</option>
+          <option>misa</option>
+          <option>mistura</option>
+          <option>moov</option>
+          <option>naked</option>
+          <option>nyx</option>
+          <option>orly</option>
+          <option>peacemaking</option>
+          <option>penny wool organics</option>
+          <option>physicians formula</option>
+          <option>piggy paint</option>
+          <option>pure anada</option>
+          <option>help the minerals</option>
+          <option>revlon</option>
+          <option>sally b's skin yummies</option>
+          <option>salon perfect</option>
+          <option>sante</option>
+          <option>sinful colors</option>
+          <option>smashbox</option>
+          <option>sila</option>
+          <option>suncoat</option>
+          <option>w3llpeople</option>
+          <option>wet n wild</option>
+          <option>zorah</option>
+          <option>zorah biocosmetiques</option>
+        </select>
+      </section>-->
+    <div id="results">
+      <h2 id="text">{{text}}</h2>
+      <div>
+        {% for result in results %}
+        <div class="result">
+          <a href="{{result['product_link']}}"><img src="https:{{result['api_featured_image']}}"></a>
+          <section class="myDIV">
+            <h3>{{result['name']}}</h3>
+            <p>Brand: {{result['brand']}}</p>
+            <p>Price: ${{result['price']}}</p>
+            {% if result['rating'] %}
+            <p>Rating: {{result['rating']}}</p>
+            {% endif %}
+            <p>Description:</p>
+            <p>{{result['description']}}</p>
+            <p>Colors</p>
+            <div class="all-colors hide">
+              {% for color in result['product_colors'] %}
+              <div class="all-colors">
+                <section class="show-color" style="background: {{color['hex_value']}}"></section>
+                <p class="p-color">{{color['colour_name']}}</p>
+              </div>
+              {% endfor %}
+            </div>
+          </section>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
