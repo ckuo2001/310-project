@@ -10,7 +10,6 @@ def safe_get(params=None):
   if params is not None:
     url = url + "?" + urllib.parse.urlencode(params)
 
-  app.logger.info(url)
   try:
       result = urllib.request.urlopen(url)
       return result
@@ -24,38 +23,27 @@ def safe_get(params=None):
       return None
 
 def make_menu_dictionary():
-  #menu_dictionary = {"brand": [], "product_type": {}, "tag_list": []}
-  #menu_dictionary = {"brand": [], "product_type": {}}
   menu_dictionary = {"brand": [], "product_type": []}
   results = json.load(safe_get())
   for result in results:
     product_type = result['product_type']
     brand = result['brand']
-    #tags = result['tag_list']
     if brand not in menu_dictionary["brand"]:
       menu_dictionary['brand'].append(brand)
 
     if product_type not in menu_dictionary['product_type']:
       menu_dictionary["product_type"].append(result["product_type"])
 
-    #if product_type not in menu_dictionary['product_type'].keys():
-      #menu_dictionary["product_type"].append(result["product_type"])
-    #  menu_dictionary["product_type"][product_type] = menu_dictionary['product_type'].get(product_type, [])
-
-    #for tag in tags:
-    #  if tag not in menu_dictionary['product_type'][product_type]:
-    #    menu_dictionary["product_type"][product_type].append(tag)
-
   return menu_dictionary
 
 def make_results(params):
   results = json.load(safe_get(params))
-  app.logger.info(results)
   return results
+
+menu_dictionary = make_menu_dictionary()
 
 @app.route('/')
 def get_all():
-  menu_dictionary = make_menu_dictionary()
   if request.args.getlist('menu'):
     menu = request.args.getlist('menu')
     params = {}
@@ -83,11 +71,6 @@ def get_all():
       return(render_template('index.html', menu_dictionary=menu_dictionary, text=text, results=results))
 
   return(render_template('index.html', menu_dictionary=menu_dictionary))
-
-@app.route("/detail")
-def detail():
-  src = request.args.get('src')
-  return(render_template('detail.html', src=src))
 
 if __name__ == "__main__":
   app.run(host='localhost', port=8080, debug=True)

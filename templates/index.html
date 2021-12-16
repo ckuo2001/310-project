@@ -191,7 +191,9 @@
             {% endif %}
             <p>Description:</p>
             <p>{{result['description']}}</p>
+            {% if result['product_colors'] %}
             <p>Colors</p>
+            {% endif %}
             <div class="all-colors hide">
               {% for color in result['product_colors'] %}
               <div class="all-colors">
